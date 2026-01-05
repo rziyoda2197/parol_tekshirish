@@ -1,0 +1,27 @@
+from parol_py import uzunlik_tekshir, kuchli_parol
+
+
+parol = input("Parolni kiriting: ")
+
+
+if uzunlik_tekshir(parol):
+    print("✓ Parol uzunligi yetarli (8 va undan ko'p belgi).")
+else:
+    print("✗ Parol juda qisqa (kamida 8 belgi bo'lishi kerak).")
+
+if kuchli_parol(parol):
+    print("✓ Parol kuchli! (katta va kichik harf, raqam bor)")
+else:
+    sabab = []
+    if len(parol) < 8:
+        sabab.append("uzunligi kamida 8 belgi bo'lishi kerak")
+    if not any(c.isupper() for c in parol):
+        sabab.append("kamida bitta katta harf bo'lishi kerak")
+    if not any(c.islower() for c in parol):
+        sabab.append("kamida bitta kichik harf bo'lishi kerak")
+    if not any(c.isdigit() for c in parol):
+        sabab.append("kamida bitta raqam bo'lishi kerak")
+
+    print("✗ Parol kuchsiz. Sabablar:")
+    for s in sabab:
+        print(f"   - {s}")
